@@ -86,10 +86,7 @@ $(document).ready(function() {
               $(".days").append("<li>" + arrayMonth[i].format("D MMMM") + "</li>")
 
             }
-            // $(".days").append("<li>" + arrayMonth[i].format("D MMMM") + "</li>")
           }
-
-
         },
         error: function() {
             alert("Si è verificato un errore");
