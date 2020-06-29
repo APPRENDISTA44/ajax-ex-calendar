@@ -5,18 +5,20 @@
   box-sizing: border-box;
 }
 .container{
+  width: 100%;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.calendario{
+  width: 80%;
 }
 .festa{
   color: red;
 }
 h2{
   margin-bottom: 20px;
-}
-li{
-  margin-bottom: 5px;
 }
 .interazione{
   margin-bottom: 10px;
@@ -27,4 +29,16 @@ li{
 span.prev,
 span.next{
   cursor: pointer;
+}
+ul{
+  display: flex;
+  flex-wrap: wrap;
+}
+li{
+  flex-basis: calc(100% / 7) ;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
 }
