@@ -10,26 +10,52 @@ $(document).ready(function() {
   var template = Handlebars.compile(source);
   var html = template();
   $('.container').append(html);
-  $('.calendario h2').text(moment(data.day + "-" + data.year, "MM-YYYY").format("MMMM YYYY"))
+  $('.calendario h2').text(moment(data.month + "-" + data.year, "MM-YYYY").format("MMMM YYYY"))
 
   //creo Gennaio
   var arrayMonth = getDaysByMonth(data.month,data.year);
-
   currentMonthCalendary(data.month, arrayMonth);
-  // for (var i = 0; i < arrayMonth.length; i++) {
-  //   $(".days").append("<li>" + arrayMonth[i].format("D MMMM") + "</li>")
-  // }
+  // nascondo il tasto finchè non sarà utilizzabile
+  $('span.prev').hide();
+
+  //gestisco cambio mese successivo
+  $(document).on('click','span.next',
+  function () {
+    $('span.prev').show();
+    data.month = data.month + 1;
+    if (data.month == 12) {
+      $('span.next').hide();
+    }else {
+      // $('span.next').show();
+    }
+    $('.calendario h2').text(moment(data.month + "-" + data.year, "MM-YYYY").format("MMMM YYYY"));
+    $('ul.days li').remove();
+    var arrayMonth = getDaysByMonth(data.month,data.year);
+    currentMonthCalendary(data.month, arrayMonth);
+  });
+
+  //gestisco cambio mese precedente
+  $(document).on('click','span.prev',
+  function () {
+    $('span.next').show();
+    data.month = data.month - 1;
+    if (data.month == 1) {
+      $('span.prev').hide();
+    }else {
+      $('span.prev').show();
+    }
+    $('.calendario h2').text(moment(data.month + "-" + data.year, "MM-YYYY").format("MMMM YYYY"));
+    $('ul.days li').remove();
+    var arrayMonth = getDaysByMonth(data.month,data.year);
+    currentMonthCalendary(data.month, arrayMonth);
+  });
 
 
 
-  // console.log(getDaysByMonth(1,2020));
-  // var array = getDaysByMonth(06,2020);
-  // array[0].format("YYYY-MM-D");
-  // console.log(  array[0].format("YYYY-MM-D"));
 
+  //FUNZIONI
 
-
-  //trovo le festivita del mese con parametro mese da 1 a 12
+  //trovo le festivita del mese con parametro mese da 1 a 12 e visualizzo il mese
   function currentMonthCalendary(month, arrayMonth) {
     month = month - 1;
     $.ajax(
@@ -86,6 +112,4 @@ $(document).ready(function() {
     }
     return arrayWithDays;
   }
-
-
 });

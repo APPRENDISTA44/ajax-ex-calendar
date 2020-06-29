@@ -5,11 +5,26 @@
   box-sizing: border-box;
 }
 .container{
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .festa{
   color: red;
+}
+h2{
+  margin-bottom: 20px;
+}
+li{
+  margin-bottom: 5px;
+}
+.interazione{
+  margin-bottom: 10px;
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+}
+span.prev,
+span.next{
+  cursor: pointer;
 }
