@@ -60,8 +60,12 @@ $(document).ready(function() {
     month = month - 1;
     $.ajax(
       {
-        url:' https://flynn.boolean.careers/exercises/api/holidays?year=2018&month=' + month,
+        url:' https://flynn.boolean.careers/exercises/api/holidays',
         method: 'GET',
+        data : {
+          "year" : 2018,
+          "month" : month
+        },
         success: function (data) {
           //salvo le feste in un array bidimensionale
           var feste = [
